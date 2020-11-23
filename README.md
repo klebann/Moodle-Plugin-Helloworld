@@ -3,7 +3,7 @@ Hello world plugin created for education purposes fallowing tutorial **Moodle Pl
 
 # Description
 This plugin at this moment is very simple.
-It has form to type your name and then it output Hello *name*.
+It has form to type your name and then it output Hello *<your_name>*!.
 
 # Instalation
 1. Download [zip file](https://github.com/klebann/Moodle-Plugin-Helloworld/archive/main.zip)
