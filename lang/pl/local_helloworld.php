@@ -23,7 +23,7 @@
  */
 
 $string['pluginname'] = 'Witaj świecie';
-$string['hello'] = 'Witaj {$a}!';
+$string['hellouser'] = 'Witaj {$a}!';
 $string['world'] = 'świecie';
 $string['questionname'] = 'Jak masz na imię?';
 $string['promptname'] = 'Wpisz swoje imię';
