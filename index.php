@@ -23,43 +23,26 @@
  */
 
 require_once(__DIR__ . '/../../config.php');
-
 require_login();
 
+// Variables.
 $username = optional_param('username', null, PARAM_ALPHA);
-$validusername = isset($username) && !empty($username);
-if ($validusername) {
-    $heading = get_string('hellouser', 'local_helloworld', $username);
-} else {
-    $worldname = get_string('world', 'local_helloworld');
-    $heading = get_string('hellouser', 'local_helloworld', $worldname);
-}
+$isusernameset = isset($username) && !empty($username);
+$heading = get_string('hellouser', 'local_helloworld',
+                $isusernameset ? $username : get_string('world', 'local_helloworld'));
+$context = context_system::instance();
 
-$PAGE->set_url(new moodle_url('/local/helloworld/index.php'));
-$PAGE->set_context(context_system::instance());
-$PAGE->set_title(get_string('pluginname', 'local_helloworld'));
-$PAGE->set_heading($heading);
+// Page setup.
+$PAGE->set_context($context);
 $PAGE->set_pagelayout('standard');
+$PAGE->set_heading($heading);
+$PAGE->set_title(get_string('pluginname', 'local_helloworld'));
+$PAGE->set_url(new moodle_url('/local/helloworld/index.php'));
+$output = $PAGE->get_renderer('local_helloworld');
 
-echo $OUTPUT->header();
+// RENDERING HTML.
+echo $output->header();
 
-echo '<div>';
-if ($validusername) {
-    echo '<ul>';
-    echo '<li><a href="' . new moodle_url('/') . '">' . get_string('backtohome', 'core_moodle') . '</a></li>';
-    echo '<li><a href="' . $PAGE->url . '">' . get_string('backtopageyouwereon', 'core_moodle') . '</a></li>';
-    echo '</ul>';
-} else {
-    $promptname = get_string('promptname', 'local_helloworld');
+echo $output->display_script($isusernameset, $PAGE->url);
 
-    echo '<p>' . get_string('questionname', 'local_helloworld') . '</p>';
-    echo '<form class="form-inline" method="get" action="'.$PAGE->url.'">';
-    echo '  <div class="form-group">';
-    echo '      <input type="text" class="form-control mx-sm-3" name="username" placeholder="' . s($promptname) . '">';
-    echo '      <input type="submit" class="btn btn-primary" value="' . get_string('submit', 'core_moodle') . '">';
-    echo '  </div>';
-    echo '</form>';
-}
-echo '</div>';
-
-echo $OUTPUT->footer();
+echo $output->footer();
