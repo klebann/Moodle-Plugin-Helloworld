@@ -27,3 +27,4 @@ $string['hellouser'] = 'Witaj {$a}!';
 $string['world'] = 'świecie';
 $string['questionname'] = 'Jak masz na imię?';
 $string['promptname'] = 'Wpisz swoje imię';
+$string['sayhello'] = 'Przywitaj się z nami!';
