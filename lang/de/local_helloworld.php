@@ -28,3 +28,6 @@ $string['world'] = 'Welt';
 $string['questionname'] = 'Wie heißen Sie?';
 $string['promptname'] = 'Gib deinen Namen ein';
 $string['sayhello'] = 'Sag Hallo zu uns!';
+$string['manage'] = $string['pluginname'] . ' Plugin verwalten';
+$string['showinnavigation'] = 'In der Navigation anzeigen';
+$string['showinnavigation_desc'] = 'Wenn diese Option aktiviert ist, wird in der Site-Navigation ein Link zur Hauptseite des Plugins ' . $string['pluginname'] . ' angezeigt';

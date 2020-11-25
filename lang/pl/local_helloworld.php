@@ -28,3 +28,6 @@ $string['world'] = 'świecie';
 $string['questionname'] = 'Jak masz na imię?';
 $string['promptname'] = 'Wpisz swoje imię';
 $string['sayhello'] = 'Przywitaj się z nami!';
+$string['manage'] = 'Zarządzaj wtyczką ' . $string['pluginname'];
+$string['showinnavigation'] = 'Pokaż w nawigacji';
+$string['showinnavigation_desc'] = 'Po włączeniu, w nawigacji zostanie wyświetlony link do strony głównej wtyczki ' . $string['pluginname'];

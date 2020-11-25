@@ -47,16 +47,22 @@ function local_helloworld_extend_navigation_frontpage(navigation_node $frontpage
  * @param global_navigation $root Node representing the global navigation tree.
  */
 function local_helloworld_extend_navigation(global_navigation $root) {
+    $showinnavigation = get_config('local_helloworld', 'showinnavigation');
+    $showinflatnavigation = get_config('local_helloworld', 'showinflatnavigation');
+    if ($showinnavigation || $showinflatnavigation) {
+        $node = navigation_node::create(
+                get_string('sayhello', 'local_helloworld'),
+                new moodle_url('/local/helloworld/index.php'),
+                navigation_node::TYPE_CUSTOM,
+                null,
+                null,
+                new pix_icon('t/message', '')
+        );
 
-    $node = navigation_node::create(
-            get_string('sayhello', 'local_helloworld'),
-            new moodle_url('/local/helloworld/index.php'),
-            navigation_node::TYPE_CUSTOM,
-            null,
-            null,
-            new pix_icon('t/message', '')
-    );
-    $node->showinflatnavigation = true;
+        if ($showinflatnavigation) {
+            $node->showinflatnavigation = true;
+        }
 
-    $root->add_node($node);
+        $root->add_node($node);
+    }
 }
