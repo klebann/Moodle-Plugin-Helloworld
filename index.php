@@ -40,6 +40,19 @@ $PAGE->set_title(get_string('pluginname', 'local_helloworld'));
 $PAGE->set_url(new moodle_url('/local/helloworld/index.php'));
 $output = $PAGE->get_renderer('local_helloworld');
 
+// Save message into database.
+$messagetext = optional_param('message', null, PARAM_TEXT);
+if (isset($messagetext) && !empty($messagetext)) {
+    $time = new DateTime("now", core_date::get_server_timezone_object());
+    $timestamp = $time->getTimestamp();
+
+    $message = new stdClass();
+    $message->message = $messagetext;
+    $message->timecreated = $timestamp;
+
+    $DB->insert_record('local_helloworld_messages', $message);
+}
+
 // RENDERING HTML.
 echo $output->header();
 

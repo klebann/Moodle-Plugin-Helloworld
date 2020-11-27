@@ -33,3 +33,5 @@ $string['showinnavigation'] = 'Show in navigation';
 $string['showinnavigation_desc'] = 'When enabled, the site navigation will display a link to the ' . $string['pluginname'] . ' plugin main page';
 $string['showinflatnavigation'] = 'Show in flat navigation';
 $string['showinflatnavigation_desc'] = 'When enabled, the site navigation will display a link to the ' . $string['pluginname'] . ' plugin main page in flat navigation';
+$string['typemessage'] = 'Type your message:';
+$string['lastupdated'] = 'Created {$a} ago';

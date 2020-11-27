@@ -31,3 +31,7 @@ $string['sayhello'] = 'Sag Hallo zu uns!';
 $string['manage'] = $string['pluginname'] . ' Plugin verwalten';
 $string['showinnavigation'] = 'In der Navigation anzeigen';
 $string['showinnavigation_desc'] = 'Wenn diese Option aktiviert ist, wird in der Site-Navigation ein Link zur Hauptseite des Plugins ' . $string['pluginname'] . ' angezeigt';
+$string['showinflatnavigation'] = 'In flacher Navigation anzeigen';
+$string['showinflatnavigation_desc'] = 'Wenn diese Option aktiviert ist, wird in der flachen Site-Navigation ein Link zur Hauptseite des Plugins ' . $string['pluginname'] . ' angezeigt';
+$string['typemessage'] = 'Schreiben Sie ihre Nachricht hier:';
+$string['lastupdated'] = 'Erstellt vor {$a}';
