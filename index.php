@@ -47,6 +47,7 @@ if (isset($messagetext) && !empty($messagetext)) {
     $message = new stdClass();
     $message->message = $messagetext;
     $message->timecreated = $timestamp;
+    $message->userid = $USER->id;
 
     $DB->insert_record('local_helloworld_messages', $message);
 }

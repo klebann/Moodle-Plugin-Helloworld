@@ -17,7 +17,7 @@
 /**
  * Renderer for local_helloworld
  *
- * TODO: Change 'message' -> 'content' in Database. Add author of message. Change readme.md
+ * TODO: Change 'message' -> 'content' in Database. Change readme.md
  *
  * @package    local_helloworld
  * @copyright  2020 Jakub Kleban <jakub.kleban2000@gmail.com>
@@ -97,15 +97,23 @@ class local_helloworld_renderer extends plugin_renderer_base {
         $output .= $this->make_break();
 
         $output .= html_writer::start_div('card-columns');
-            $messages = $DB->get_records('local_helloworld_messages');
-            foreach ($messages as $message) {
-                $now = new DateTime('now', core_date::get_server_timezone_object());
-                $timediff = $now->getTimestamp() - $message->timecreated;
-                $formatedtime = format_time($timediff);
-                $lastupdated = get_string('lastupdated', 'local_helloworld', $formatedtime);
 
-                $output .= $this->display_message($message->message, $lastupdated);
-            }
+        $userfields = get_all_user_name_fields(true, 'u');
+        $sql = "SELECT m.id, m.message, m.timecreated, u.id AS userid, $userfields
+                FROM {local_helloworld_messages} m
+                LEFT JOIN {user} u ON u.id = m.userid
+                ORDER BY timemodified DESC";
+        $messages = $DB->get_records_sql($sql);
+
+        foreach ($messages as $message) {
+            $now = new DateTime('now', core_date::get_server_timezone_object());
+            $timediff = $now->getTimestamp() - $message->timecreated;
+            $formatedtime = format_time($timediff);
+            $lastupdated = get_string('lastupdated', 'local_helloworld', $formatedtime);
+
+            $output .= $this->display_message(fullname($message) , $message->message, $lastupdated);
+        }
+
         $output .= html_writer::end_div();
 
         return $output;
@@ -114,16 +122,17 @@ class local_helloworld_renderer extends plugin_renderer_base {
     /**
      * Generate html to display one message
      *
+     * @param string $fullname Full name of author
      * @param string $message Content of the message
      * @param string $lastupdated Formated text displaying how long ago was the message created
      * @return string html for displaying one message
      */
-    private function display_message(string $message, string $lastupdated) {
+    private function display_message(string $fullname, string $message, string $lastupdated) {
         $output = '';
 
         $output .= html_writer::start_div('card');
             $output .= html_writer::start_div('card-body');
-                $output .= html_writer::tag('h5', 'FirstName LastName', array(
+                $output .= html_writer::tag('h5', $fullname, array(
                         'class' => 'card-title'
                 ));
                 $output .= html_writer::tag('p', $message, array(

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/helloworld/db" VERSION="20201126" COMMENT="XMLDB file for Moodle local/helloworld"
+<XMLDB PATH="local/helloworld/db" VERSION="20201127" COMMENT="XMLDB file for Moodle local/helloworld"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -7,11 +7,13 @@
     <TABLE NAME="local_helloworld_messages" COMMENT="Tables for messages in hello world plugin">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="This is an id of user which send message"/>
         <FIELD NAME="message" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="the content of the submitted message"/>
         <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The UNIX timestamp of when the message was posted"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id" COMMENT="This is an foreign key that references the field id in the table user."/>
       </KEYS>
     </TABLE>
   </TABLES>
