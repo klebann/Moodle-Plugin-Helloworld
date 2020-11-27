@@ -17,7 +17,7 @@
 /**
  * Renderer for local_helloworld
  *
- * TODO: get name from user. display it in header. Remove asking what is your name. Change 'message' -> 'content' in Database. Add author of message.
+ * TODO: Change 'message' -> 'content' in Database. Add author of message.
  *
  * @package    local_helloworld
  * @copyright  2020 Jakub Kleban <jakub.kleban2000@gmail.com>
@@ -38,17 +38,13 @@ class local_helloworld_renderer extends plugin_renderer_base {
     /**
      * Generates html to display script
      *
-     * @param bool $isusernameset Is the username set?
      * @param string $url URL of index.php
      * @return string
      */
-    public function display_script($isusernameset, $url) {
+    public function display_script($url) {
         $output = '';
-        if ($isusernameset) {
-            $output .= $this->type_your_message($url);
-        } else {
-            $output .= $this->ask_me_for_name($url);
-        }
+
+        $output .= $this->message_input($url);
 
         $output .= $this->display_messages();
 
@@ -63,7 +59,7 @@ class local_helloworld_renderer extends plugin_renderer_base {
      * @param string $url URL of index.php
      * @return string Form for message-textarea
      */
-    private function type_your_message($url) {
+    private function message_input($url) {
         $output = '';
 
         $output .= html_writer::start_tag('form', array(
@@ -83,39 +79,6 @@ class local_helloworld_renderer extends plugin_renderer_base {
                     'type' => 'submit',
                     'class' => 'btn btn-primary'
             ));
-        $output .= html_writer::end_tag('form');
-
-        return $output;
-    }
-
-    /**
-     * Generate name-input form
-     *
-     * @param string $url URL of index.php
-     * @return string html for user name input
-     */
-    private function ask_me_for_name($url) {
-        $output = '';
-
-        $output .= html_writer::tag('p', get_string('questionname', 'local_helloworld'));
-
-        $output .= html_writer::start_tag('form', array(
-                'class' => 'form-inline',
-                'method' => 'get',
-                'action' => $url
-        ));
-            $output .= html_writer::start_div('form-group');
-                $output .= html_writer::empty_tag('input', array(
-                        'type' => 'text',
-                        'class' => 'form-control mx-sm-3',
-                        'name' => 'username',
-                        'placeholder' => s(get_string('promptname', 'local_helloworld'))
-                ));
-                $output .= html_writer::tag('button', get_string('submit', 'core_moodle'), array(
-                        'type' => 'submit',
-                        'class' => 'btn btn-primary',
-                ));
-            $output .= html_writer::end_div();
         $output .= html_writer::end_tag('form');
 
         return $output;

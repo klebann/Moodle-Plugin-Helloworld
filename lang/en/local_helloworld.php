@@ -24,14 +24,14 @@
 
 $string['pluginname'] = 'Hello world';
 $string['hellouser'] = 'Hello {$a}!';
-$string['world'] = 'world';
-$string['questionname'] = 'What is your name?';
-$string['promptname'] = 'Type your name';
+
 $string['sayhello'] = 'Say hello to us!';
+
 $string['manage'] = 'Manage ' . $string['pluginname'];
 $string['showinnavigation'] = 'Show in navigation';
 $string['showinnavigation_desc'] = 'When enabled, the site navigation will display a link to the ' . $string['pluginname'] . ' plugin main page';
 $string['showinflatnavigation'] = 'Show in flat navigation';
 $string['showinflatnavigation_desc'] = 'When enabled, the site navigation will display a link to the ' . $string['pluginname'] . ' plugin main page in flat navigation';
+
 $string['typemessage'] = 'Type your message:';
 $string['lastupdated'] = 'Created {$a} ago';

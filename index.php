@@ -27,9 +27,7 @@ require_login();
 
 // Variables.
 $username = optional_param('username', null, PARAM_ALPHA);
-$isusernameset = isset($username) && !empty($username);
-$heading = get_string('hellouser', 'local_helloworld',
-                $isusernameset ? $username : get_string('world', 'local_helloworld'));
+$heading = get_string('hellouser', 'local_helloworld', fullname($USER));
 $context = context_system::instance();
 
 // Page setup.
@@ -56,6 +54,6 @@ if (isset($messagetext) && !empty($messagetext)) {
 // RENDERING HTML.
 echo $output->header();
 
-echo $output->display_script($isusernameset, $PAGE->url);
+echo $output->display_script($PAGE->url);
 
 echo $output->footer();
