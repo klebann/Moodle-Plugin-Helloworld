@@ -1,17 +1,17 @@
 # Moodle plugin "Hello world"
-Hello world plugin created for education purposes fallowing tutorial
+Hello world plugin created for education purposes following tutorial
 "*Moodle Plugin Development Basics*" on https://learn.moodle.org/.
 
 # Description
-This plugin is simple **Hello World** script. It displays "Hello world!" on Moodle page.<br>
-If you'll enter your name on the form, it'll say "*Hello <your_name>!*".<br>
-It also supports multiple languages, themes and administration settings.
+This plugin will let you to say hello to others!<br>
+You can type your message in textarea, which will be displayed to others.<br>
+Plugin supports multiple languages, themes, administration settings and database.
 
-# Instalation
+# Installation
 1. Download [zip file](https://github.com/klebann/Moodle-Plugin-Helloworld/archive/main.zip).
 2. Moodle -> Site administration -> Plugins -> Install plugins.
 
 More details in [documentation](https://docs.moodle.org/39/en/Installing_plugins#Installing_a_plugin).
 
-# Usuage
+# Usage
 Open *your_moodle_site_url/local/helloworld*

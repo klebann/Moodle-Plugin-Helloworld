@@ -17,7 +17,7 @@
 /**
  * Renderer for local_helloworld
  *
- * TODO: Change 'message' -> 'content' in Database. Add author of message.
+ * TODO: Change 'message' -> 'content' in Database. Add author of message. Change readme.md
  *
  * @package    local_helloworld
  * @copyright  2020 Jakub Kleban <jakub.kleban2000@gmail.com>
