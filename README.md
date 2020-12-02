@@ -3,8 +3,14 @@ Hello world plugin created for education purposes following tutorial
 "*Moodle Plugin Development Basics*" on https://learn.moodle.org/.
 
 # Description
-This plugin will let you to say hello to others!<br>
-You can type your message in textarea, which will be displayed to others.<br>
+Plugin let you to add a *social space for users* or *simplified notice board
+where only a few staff members are allowed to post announcements*.<br>
+
+Granular features:
+* Posting a message through textarea (authenticated users)
+* Viewing posted messages (all)
+* Deleting any message (selected users)
+
 Plugin supports multiple languages, themes, administration settings and database.
 
 # Installation

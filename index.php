@@ -25,6 +25,10 @@
 require_once(__DIR__ . '/../../config.php');
 require_login();
 
+if (isguestuser()) {
+    print_error('noguest');
+}
+
 // Variables.
 $username = optional_param('username', null, PARAM_ALPHA);
 $heading = get_string('hellouser', 'local_helloworld', fullname($USER));
