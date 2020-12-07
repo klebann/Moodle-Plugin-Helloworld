@@ -35,3 +35,7 @@ $string['showinflatnavigation_desc'] = 'When enabled, the site navigation will d
 
 $string['typemessage'] = 'Type your message:';
 $string['lastupdated'] = 'Created {$a} ago';
+
+$string['helloworld:viewmessages'] = 'View messages on the Hello world wall';
+$string['helloworld:postmessages'] = 'Post new messages to the Hellow world wall';
+$string['helloworld:deleteanymessage'] = 'Delete any posted message from the Hello world wall';

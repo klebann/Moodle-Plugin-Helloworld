@@ -43,10 +43,15 @@ class local_helloworld_renderer extends plugin_renderer_base {
      */
     public function display_script($url) {
         $output = '';
+        $context = context_system::instance();
 
-        $output .= $this->message_input($url);
+        if (has_capability('local/helloworld:postmessages', $context)) {
+            $output .= $this->message_input($url);
+        }
 
-        $output .= $this->display_messages();
+        if (has_capability('local/helloworld:viewmessages', $context)) {
+            $output .= $this->display_messages();
+        }
 
         $output .= $this->footer($url);
 

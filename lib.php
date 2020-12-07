@@ -30,16 +30,14 @@ defined('MOODLE_INTERNAL') || die;
  * @param navigation_node $frontpage Node representing the front page in the navigation tree.
  */
 function local_helloworld_extend_navigation_frontpage(navigation_node $frontpage) {
-    if (isloggedin() && !isguestuser()) {
-        $frontpage->add(
-                get_string('pluginname', 'local_helloworld'),
-                new moodle_url('/local/helloworld/index.php'),
-                navigation_node::TYPE_CUSTOM,
-                null,
-                null,
-                new pix_icon('share', '', 'local_helloworld')
-        );
-    }
+    $frontpage->add(
+            get_string('pluginname', 'local_helloworld'),
+            new moodle_url('/local/helloworld/index.php'),
+            navigation_node::TYPE_CUSTOM,
+            null,
+            null,
+            new pix_icon('share', '', 'local_helloworld')
+    );
 }
 
 /**
@@ -48,24 +46,22 @@ function local_helloworld_extend_navigation_frontpage(navigation_node $frontpage
  * @param global_navigation $root Node representing the global navigation tree.
  */
 function local_helloworld_extend_navigation(global_navigation $root) {
-    if (isloggedin() && !isguestuser()) {
-        $showinnavigation = get_config('local_helloworld', 'showinnavigation');
-        $showinflatnavigation = get_config('local_helloworld', 'showinflatnavigation');
-        if ($showinnavigation || $showinflatnavigation) {
-            $node = navigation_node::create(
-                    get_string('sayhello', 'local_helloworld'),
-                    new moodle_url('/local/helloworld/index.php'),
-                    navigation_node::TYPE_CUSTOM,
-                    null,
-                    null,
-                    new pix_icon('t/message', '')
-            );
+    $showinnavigation = get_config('local_helloworld', 'showinnavigation');
+    $showinflatnavigation = get_config('local_helloworld', 'showinflatnavigation');
+    if ($showinnavigation || $showinflatnavigation) {
+        $node = navigation_node::create(
+                get_string('sayhello', 'local_helloworld'),
+                new moodle_url('/local/helloworld/index.php'),
+                navigation_node::TYPE_CUSTOM,
+                null,
+                null,
+                new pix_icon('t/message', '')
+        );
 
-            if ($showinflatnavigation) {
-                $node->showinflatnavigation = true;
-            }
-
-            $root->add_node($node);
+        if ($showinflatnavigation) {
+            $node->showinflatnavigation = true;
         }
+
+        $root->add_node($node);
     }
 }

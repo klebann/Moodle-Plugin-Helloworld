@@ -35,3 +35,7 @@ $string['showinflatnavigation_desc'] = 'Po włączeniu, w płaskiej nawigacji zo
 
 $string['typemessage'] = 'Wpisz swoją wiadomość:';
 $string['lastupdated'] = 'Wysłano {$a} temu';
+
+$string['helloworld:viewmessages'] = 'Przeglądanie wiadomości na tablicy wtyczki "Witaj świecie"';
+$string['helloworld:postmessages'] = 'Dodawanie nowych wiadomości do tablicy wtyczki "Witaj świecie"';
+$string['helloworld:deleteanymessage'] = 'Usuń dowolną wiadomość z tablicy wtyczki "Witaj świecie"';

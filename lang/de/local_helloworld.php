@@ -35,3 +35,7 @@ $string['showinflatnavigation_desc'] = 'Wenn diese Option aktiviert ist, wird in
 
 $string['typemessage'] = 'Schreiben Sie ihre Nachricht hier:';
 $string['lastupdated'] = 'Erstellt vor {$a}';
+
+$string['helloworld:viewmessages'] = 'Anzeigen von Nachrichten an die Hallo Welt Wand';
+$string['helloworld:postmessages'] = 'Poste neue Nachrichten an die Hallo Welt Wand';
+$string['helloworld:deleteanymessage'] = 'Löschen Sie alle geposteten Nachrichten von der Hallo Welt Wand';

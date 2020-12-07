@@ -25,10 +25,6 @@
 require_once(__DIR__ . '/../../config.php');
 require_login();
 
-if (isguestuser()) {
-    print_error('noguest');
-}
-
 // Variables.
 $username = optional_param('username', null, PARAM_ALPHA);
 $heading = get_string('hellouser', 'local_helloworld', fullname($USER));
@@ -43,22 +39,24 @@ $PAGE->set_url(new moodle_url('/local/helloworld/index.php'));
 $output = $PAGE->get_renderer('local_helloworld');
 
 // Save message into database.
-$messagetext = optional_param('message', null, PARAM_TEXT);
-if (isset($messagetext) && !empty($messagetext)) {
-    $time = new DateTime("now", core_date::get_server_timezone_object());
-    $timestamp = $time->getTimestamp();
+if (has_capability('local/helloworld:postmessages', $context)) {
+    $messagetext = optional_param('message', null, PARAM_TEXT);
+    if (isset($messagetext) && !empty($messagetext)) {
+        $time = new DateTime("now", core_date::get_server_timezone_object());
+        $timestamp = $time->getTimestamp();
 
-    $message = new stdClass();
-    $message->message = $messagetext;
-    $message->timecreated = $timestamp;
-    $message->userid = $USER->id;
+        $message = new stdClass();
+        $message->message = $messagetext;
+        $message->timecreated = $timestamp;
+        $message->userid = $USER->id;
 
-    $DB->insert_record('local_helloworld_messages', $message);
+        $DB->insert_record('local_helloworld_messages', $message);
+    }
 }
 
 // RENDERING HTML.
 echo $output->header();
 
-echo $output->display_script($PAGE->url);
+echo $output->display_script($PAGE->url, $context);
 
 echo $output->footer();
