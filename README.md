@@ -11,6 +11,9 @@ Granular features:
 * Viewing posted messages (all)
 * Deleting any message (selected users)
 
+# Visuals
+<img src = "img/screenshot.png">
+
 Plugin supports multiple languages, themes, administration settings and database.
 
 # Installation
