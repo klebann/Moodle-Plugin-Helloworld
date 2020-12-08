@@ -56,7 +56,7 @@ $capabilities = array(
             'editingteacher'    => CAP_ALLOW,
             'teacher'           => CAP_ALLOW,
             'student'           => CAP_ALLOW,
-            'user'              =>  CAP_ALLOW
+            'user'              => CAP_ALLOW
         )
     ),
 

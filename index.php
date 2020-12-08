@@ -54,6 +54,14 @@ if (has_capability('local/helloworld:postmessages', $context)) {
     }
 }
 
+if (has_capability('local/helloworld:deleteanymessage', $context)) {
+    if ( $deleteid = optional_param('deleteid', null, PARAM_INT) ) {
+        $DB->delete_records('local_helloworld_messages', array(
+                'id' => $deleteid
+        ));
+    }
+}
+
 // RENDERING HTML.
 echo $output->header();
 

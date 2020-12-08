@@ -29,7 +29,7 @@ defined('MOODLE_INTERNAL') || die();
  * @param int $oldversion The old version of the assign module
  * @return bool
  */
-function xmldb_local_helloworld_upgrade($oldversion){
+function xmldb_local_helloworld_upgrade($oldversion) {
     global $CFG, $DB;
 
     $dbman = $DB->get_manager();

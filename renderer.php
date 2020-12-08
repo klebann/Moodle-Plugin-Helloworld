@@ -17,7 +17,6 @@
 /**
  * Renderer for local_helloworld
  *
- * TODO: Change 'message' -> 'content' in Database. Change readme.md
  *
  * @package    local_helloworld
  * @copyright  2020 Jakub Kleban <jakub.kleban2000@gmail.com>
@@ -50,7 +49,7 @@ class local_helloworld_renderer extends plugin_renderer_base {
         }
 
         if (has_capability('local/helloworld:viewmessages', $context)) {
-            $output .= $this->display_messages();
+            $output .= $this->display_messages($url);
         }
 
         $output .= $this->footer($url);
@@ -82,7 +81,7 @@ class local_helloworld_renderer extends plugin_renderer_base {
             $output .= html_writer::end_div();
             $output .= html_writer::tag('button', get_string('messageselectadd', 'core_moodle') , array(
                     'type' => 'submit',
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-primary rounded'
             ));
         $output .= html_writer::end_tag('form');
 
@@ -92,9 +91,10 @@ class local_helloworld_renderer extends plugin_renderer_base {
     /**
      * Generate html to display messages
      *
+     * @param string $url URL of index.php
      * @return string html for displaying messages
      */
-    private function display_messages() {
+    private function display_messages(string $url) {
         global $DB;
 
         $output = '';
@@ -115,8 +115,9 @@ class local_helloworld_renderer extends plugin_renderer_base {
             $timediff = $now->getTimestamp() - $message->timecreated;
             $formatedtime = format_time($timediff);
             $lastupdated = get_string('lastupdated', 'local_helloworld', $formatedtime);
+            $id = $message->id;
 
-            $output .= $this->display_message(fullname($message) , $message->message, $lastupdated);
+            $output .= $this->display_message($url, $id, fullname($message) , $message->message, $lastupdated);
         }
 
         $output .= html_writer::end_div();
@@ -127,19 +128,43 @@ class local_helloworld_renderer extends plugin_renderer_base {
     /**
      * Generate html to display one message
      *
+     * @param string $url URL of index.php
+     * @param int $id Id of message
      * @param string $fullname Full name of author
      * @param string $message Content of the message
      * @param string $lastupdated Formated text displaying how long ago was the message created
      * @return string html for displaying one message
      */
-    private function display_message(string $fullname, string $message, string $lastupdated) {
+    private function display_message(string $url, int $id, string $fullname, string $message, string $lastupdated) {
         $output = '';
+        $context = context_system::instance();
 
         $output .= html_writer::start_div('card');
             $output .= html_writer::start_div('card-body');
-                $output .= html_writer::tag('h5', $fullname, array(
-                        'class' => 'card-title'
+                $output .= html_writer::start_tag('h5', array(
+                        'class' => 'card-title d-flex justify-content-between'
                 ));
+                    $output .= $fullname;
+
+        if (has_capability('local/helloworld:deleteanymessage', $context)) {
+            $output .= html_writer::start_tag('form', array(
+                    'method' => 'post',
+                    'action' => $url
+            ));
+            $output .= html_writer::start_tag('button', array(
+                    'type' => 'submit',
+                    'class' => 'btn btn-danger rounded',
+                    'name' => 'deleteid',
+                    'value' => $id
+            ));
+                $output .= html_writer::tag('i', '', array(
+                        'class' => 'fa fa-trash',
+                        'aria-hidden' => 'true'
+                ));
+            $output .= html_writer::end_tag('button');
+            $output .= html_writer::end_tag('form');
+        }
+                $output .= html_writer::end_tag('h5');
                 $output .= html_writer::tag('p', $message, array(
                         'class' => 'card-text'
                 ));
