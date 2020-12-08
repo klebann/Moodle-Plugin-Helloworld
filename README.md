@@ -11,10 +11,10 @@ Granular features:
 * Viewing posted messages (all)
 * Deleting any message (selected users)
 
+Plugin supports multiple languages, themes, administration settings and database.
+
 # Visuals
 <img src = "img/screenshot.png">
-
-Plugin supports multiple languages, themes, administration settings and database.
 
 # Installation
 1. Download [zip file](https://github.com/klebann/Moodle-Plugin-Helloworld/archive/main.zip).
