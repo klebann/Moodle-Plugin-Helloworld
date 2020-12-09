@@ -72,6 +72,11 @@ class local_helloworld_renderer extends plugin_renderer_base {
         ));
             $output .= html_writer::start_div('form-group');
                 $output .= html_writer::label(get_string('typemessage', 'local_helloworld'), 'messagetextarea');
+                $output .= html_writer::empty_tag('input', array(
+                    'type' => 'hidden',
+                    'name' => 'sesskey',
+                    'value' => sesskey()
+                ));
                 $output .= html_writer::tag('textarea', '', array(
                         'class' => 'form-control',
                         'id' => 'messagetextarea',
@@ -150,6 +155,11 @@ class local_helloworld_renderer extends plugin_renderer_base {
             $output .= html_writer::start_tag('form', array(
                     'method' => 'post',
                     'action' => $url
+            ));
+            $output .= html_writer::empty_tag('input', array(
+                'type' => 'hidden',
+                'name' => 'sesskey',
+                'value' => sesskey()
             ));
             $output .= html_writer::start_tag('button', array(
                     'type' => 'submit',

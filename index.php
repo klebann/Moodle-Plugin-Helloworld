@@ -42,6 +42,7 @@ $output = $PAGE->get_renderer('local_helloworld');
 if (has_capability('local/helloworld:postmessages', $context)) {
     $messagetext = optional_param('message', null, PARAM_TEXT);
     if (isset($messagetext) && !empty($messagetext)) {
+        require_sesskey();
         $time = new DateTime("now", core_date::get_server_timezone_object());
         $timestamp = $time->getTimestamp();
 
@@ -56,6 +57,7 @@ if (has_capability('local/helloworld:postmessages', $context)) {
 
 if (has_capability('local/helloworld:deleteanymessage', $context)) {
     if ( $deleteid = optional_param('deleteid', null, PARAM_INT) ) {
+        require_sesskey();
         $DB->delete_records('local_helloworld_messages', array(
                 'id' => $deleteid
         ));
